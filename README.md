@@ -9,10 +9,10 @@ click the page button to show other pages
 
 Use Typewriter.js in project for title
 
-Fature Feature : 
-  Add Shopping Basket 
-  Total Price
-  Remove product
-  add product number
+Fature Feature : <br />
+  Add Shopping Basket <br />
+  Total Price <br />
+  Remove product <br /> 
+  add product number <br />
   
   https://mohammadyousefvand.github.io/Organic-Products-Store-/
