@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    transition: all .4s;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    padding: 0 120px;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #eee;
+    text-align: center;
+    padding: 30px 50px;
+
+}
+
+.container h2 {
+    margin-bottom: 80px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.item-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.hide {
+    transform: translateX(-150%) !important;
+}
+
+.product {
+    background-color: #e4e4e4;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: 1px solid rgb(102, 102, 102);
+    outline-offset: -1em;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.product:hover {
+    outline-offset: 0;
+}
+
+.product:hover img {
+    transform: translateY(-30px) scale(1.1);
+}
+
+.product img {
+    width: 280px;
+    margin-bottom: 10px;
+}
+
+.product p {
+    margin-bottom: 12px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+
+.title {
+    font-size: 18px;
+}
+
+.price {
+    font-size: 20px;
+}
+
+.preview-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transform: scale(0);
+}
+
+.show {
+    transform: scale(1);
+}
+
+.preview {
+    width: 400px;
+    background-color: #e4e4e4;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+}
+
+.preview img {
+    width: 210px;
+}
+
+.preview .name-product {
+    margin: 10px;
+    font-size: 17px;
+}
+
+.preview .bio-product {
+    margin: 15px 0;
+}
+
+.preview .star span {
+    color: goldenrod;
+    cursor: pointer;
+}
+
+.preview .price-product {
+    font-size: 20px;
+}
+
+.preview .btn-product {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.btn-product button {
+    width: 50%;
+    height: 40px;
+    background: linear-gradient(45deg, #9c9c9c 50%, #575757 50%);
+    background-size: 400px;
+    background-position: 100%;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-product button:hover {
+    background-position: 0;
+    color: #000;
+}
+
+.preview .fa-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.preview .fa-close:hover {
+    transform: scale(1.2);
+}
+
+.pagenation {
+    width: 100%;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pagenation button {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #9c9c9c 50%, #575757 50%);
+    background-size: 200px;
+    background-position: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #e4e4e4;
+    cursor: pointer;
+}
+
+.pagenation button:hover {
+    background-position: 0;
+    color: #000;
+}
+
+.pagenation button.active {
+    background-position: 10%;
+}
+
+
+
+@media screen and (max-width:1024px) {
+    body {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .item-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .container h2 {
+        margin-bottom: 40px;
+    }
+
+    .preview {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    .product img {
+        width: 250px;
+    }
+
+    .container h2 {
+        font-size: 20px;
+    }
+
+    .item-container {
+        gap: 40px;
+    }
+}
