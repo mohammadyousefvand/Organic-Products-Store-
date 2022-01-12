@@ -1,4 +1,4 @@
-Organic Products Store 
+<h2>Organic Products Store</h2>
 
 Dynamic Store by vanila javascript 
 
@@ -14,3 +14,5 @@ Fature Feature :
   Total Price
   Remove product
   add product number
+  
+  https://mohammadyousefvand.github.io/Organic-Products-Store-/
