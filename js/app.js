@@ -25,7 +25,7 @@ let pagenation = $.querySelector('.pagenation')
 let app = document.getElementById('app');
 
 let courentPage = 1
-let rowItem = 3 
+let rowItem = 4 
 let btnItems;
 
 function createItemProducts (itemContainer , allProducts , courentPage , rowItem) {
