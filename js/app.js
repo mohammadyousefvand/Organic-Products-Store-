@@ -18,20 +18,26 @@ let allProducts = [
     {id : 16 , title : 'banana'       , image : 'images/16.png' , price : 20 , count : 1},
     {id : 17 , title : 'squash'       , image : 'images/17.png' , price : 6  , count : 1},
 ]
+//basketArray
+let basket = []
 
 const itemContainer = $.querySelector('.item-container')
 const previewContainer = $.querySelector('.preview-container')
-let pagenation = $.querySelector('.pagenation')
-let app = document.getElementById('app');
+const pagenation = $.querySelector('.pagenation')
+const basketContainer = $.querySelector('.all-basket')
+const removeAllItems = $.querySelector('.remove-all-Items')
+const totalPrice = $.querySelector('.total')
 
 let courentPage = 1
 let rowItem = 4 
 let btnItems;
 
+//main Item
 function createItemProducts (itemContainer , allProducts , courentPage , rowItem) {
 
     itemContainer.innerHTML = ''
 
+    //calc start and end for slice
     let endItem = courentPage * rowItem
     let startItem = endItem - rowItem
 
@@ -39,13 +45,16 @@ function createItemProducts (itemContainer , allProducts , courentPage , rowItem
 
     pageItem.forEach(function (item) {
     
-        let boxProduct = '<div class="product" onclick="showProductInformation(' + item.id + ')"><img src="' + item.image + 
-        '"><p class="title">' + item.title + '</p><p class="price">$ ' + item.price + '</p></div>'
+        let boxProduct = `<div class="product" onclick="showProductInformation(${item.id})">
+        <img src="${item.image}">
+        <p class="title">${item.title}</p>
+        <p class="price">\$ ${item.price}</p></div>`
     
         itemContainer.insertAdjacentHTML('beforeend' , boxProduct)
     })
 }
 
+//page button create
 function pagenationHandler (pagenation , allProducts , rowItem) {
 
     pagenation.innerHTML = ''
@@ -107,16 +116,136 @@ function showProductInformation (productId) {
     allProducts.forEach(function (product) {
         if (productId == product.id) {
 
-            showElem = '<div class="preview"><span class="fa fa-close close" onclick="hidePreview()"></span><img src="' + product.image + 
-            '"alt="product"><p class="name-product">' + product.title + 
-            '</p><div class="star"><span class="fa fa-star" ></span><span class="fa fa-star" ></span> ' +
-            ' <span class="fa fa-star" ></span><span class="fa fa-star-o" ></span><span class="fa fa-star-o"></span></div><p class="bio-product">' + 
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, sunt!</p><p class="price-product">$ ' + product.price + 
-            '</p><div class="btn-product"><button>Buy</button><button>Add</button></div></div>'
+            showElem = `<div class="preview">
+            <span class="fa fa-close close" onclick="hidePreview()"></span>
+            <img src="${product.image}"alt="product">
+            <p class="name-product">${product.title}</p>
+            <div class="star">
+            <span class="fa fa-star" ></span>
+            <span class="fa fa-star" ></span>
+            <span class="fa fa-star" ></span>
+            <span class="fa fa-star-o" ></span>
+            <span class="fa fa-star-o"></span>
+            </div>
+            <p class="bio-product">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <p class="price-product">\$ ${product.price}</p>
+            <div class="btn-product">
+            <button onclick="addItemToBasket(${product.id})">Buy</button>
+            <button onclick="addItemToBasket(${product.id})">Add</button>
+            </div>
+            </div>`
         
             previewContainer.insertAdjacentHTML('beforeend' , showElem)
         }
     })
+}
+
+function addItemToBasket (productId) {
+
+    let checkItem = basket.some(function (product) {
+        return productId == product.id
+    })
+
+    //check item in basket Yes or No
+    if (checkItem) {
+        basket.forEach(function (product) {
+            if (productId == product.id) {
+                product.count++
+            }
+        })
+        generateBasket(basket)
+        calcUserBasket(basket)
+    } else {
+        let userItemProduct = allProducts.find(function (product) {
+            return productId == product.id
+        })
+    
+        basket.push(userItemProduct)
+    
+        generateBasket(basket)
+        calcUserBasket(basket)
+    }
+    previewContainer.classList.remove('show')
+    itemContainer.style.filter = 'blur(0)'
+}
+
+function generateBasket (basket) {
+
+    basketContainer.innerHTML = ''
+
+    let basketTemplate;
+
+    basket.forEach(function (product) {
+        basketTemplate = `<div class="user-basket">
+        <img src="${product.image}" alt="basketimage">
+        <p class="user-price">\$ ${product.price}</p>
+        <div class="number-remove">
+        <div class="plus-mines">
+        <span onclick="updatePlusNumberProducts(${product.id})">+</span>
+        <input type="number" class="number" value="${product.count}" readonly>
+        <span onclick="updateMinusNumberProducts(${product.id})">-</span>
+        </div>
+        <button onclick="removeItemInBasket(${product.id})" class="remove-item">Remove</button>
+        </div></div>`
+        
+        basketContainer.insertAdjacentHTML('beforeend' , basketTemplate)
+    })
+}
+
+function removeItemInBasket (productId) {
+    basket = basket.filter(function (product) {
+        return productId !== product.id
+    })
+
+    generateBasket(basket)
+    calcUserBasket(basket)
+}
+
+function removeAllItemsHandler () {
+    basketContainer.classList.add('hide')
+
+    setTimeout(function () {
+        basket = []
+        generateBasket(basket)
+        calcUserBasket(basket)
+    }, 1000)
+}
+
+function calcUserBasket (basket) {
+    let sumPriceProducts = 0
+
+    basket.forEach(function (product) {
+        sumPriceProducts += product.price * product.count
+    })
+
+    totalPrice.innerHTML = '$ ' + sumPriceProducts
+
+    generateBasket(basket)
+}
+
+function updatePlusNumberProducts (productId) {
+
+    basket.forEach(function (product) {
+        if (productId === product.id) {
+           product.count++
+        }
+        if (product.count > 10) {
+            product.count = 10
+        }
+    })
+    calcUserBasket(basket)
+}
+function updateMinusNumberProducts (productId) {
+
+    basket.forEach(function (product) {
+        if (productId === product.id) {
+           product.count--
+        }
+        if (product.count < 1) {
+            product.count = 1
+        }
+    })
+    calcUserBasket(basket)
 }
 
 //blur style for background
@@ -141,5 +270,6 @@ typewriter.typeString('organic products')
     .start();
 
 
+removeAllItems.addEventListener('click' , removeAllItemsHandler)
 createItemProducts(itemContainer , allProducts , courentPage , rowItem)
 pagenationHandler(pagenation , allProducts , rowItem)

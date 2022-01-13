@@ -200,7 +200,140 @@ body {
     background-position: 10%;
 }
 
+.basket-bio {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    margin-top: 40px;
+}
 
+.main-bio {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-bio p {
+    font-size: 18px;
+    position: relative;
+}
+
+.main-bio p::after {
+    content: '';
+    width: 100px;
+    height: 3px;
+    background-color: #000;
+    position: absolute;
+    top: 130%;
+    left: 0;
+}
+
+.all-basket {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-basket {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #000;
+}
+
+.user-basket img {
+    width: 150px;
+}
+
+.number-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plus-mines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.plus-mines span {
+    font-size: 35px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.plus-mines span:first-child {
+    color: green;
+}
+
+.plus-mines span:last-child {
+    color: red;
+}
+
+.user-basket input {
+    width: 45px;
+    height: 45px;
+    border: 1px solid #000;
+    font-size: 18px;
+    padding-left: 5px;
+}
+
+.user-basket button {
+    width: 100px;
+    height: 35px;
+    font-size: 17px;
+    background: linear-gradient(45deg, rgb(255, 66, 33) 50%, rgb(253, 101, 74) 50%);
+    background-size: 250px;
+    background-position: 100%;
+    color: #fff;
+    cursor: pointer;
+}
+
+.user-basket button:hover {
+    background-position: 0;
+}
+
+.total-price {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.total-price p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.remove-all {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.remove-all button {
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    background: linear-gradient(45deg, rgb(255, 66, 33) 50%, rgb(253, 101, 74) 50%);
+    background-size: 450px;
+    background-position: 100%;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.remove-all button:hover {
+    background-position: 0;
+}
 
 @media screen and (max-width:1024px) {
     body {
@@ -237,5 +370,37 @@ body {
 
     .item-container {
         gap: 40px;
+    }
+
+    .main-bio p::after {
+        width: 80px;
+    }
+
+    .basket-bio {
+        padding: 20px 10px;
+    }
+
+    .user-basket {
+        padding: 5px;
+    }
+
+    .user-basket img {
+        width: 80px;
+    }
+
+    .user-basket input {
+        width: 40px;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .user-basket button {
+        width: 70px;
+        height: 30px;
+        font-size: 13px;
+    }
+
+    .plus-mines span {
+        font-size: 30px;
     }
 }
