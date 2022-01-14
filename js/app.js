@@ -208,6 +208,8 @@ function removeAllItemsHandler () {
         basket = []
         generateBasket(basket)
         calcUserBasket(basket)
+
+        basketContainer.classList.remove('hide')
     }, 1000)
 }
 
