@@ -9,7 +9,6 @@ click the page button to show other pages
 
 Use Typewriter.js in project for title
 
-Fature Feature : <br />
   Add Shopping Basket <br />
   Total Price <br />
   Remove product <br /> 
